@@ -2,6 +2,11 @@ from doubly_linked_list import Node
 from stack import Stack
 
 def main():
+    """
+    Checks bracket matching using a stack; requires paran to be defined.
+    Returns:
+        (bool): True if the brackets match, otherwise false.
+    """
     start = paran[0]
     q = Stack(Node(start))
 
