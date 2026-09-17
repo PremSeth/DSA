@@ -1,0 +1,11 @@
+{
+    "files.associations": {
+        "*.py": "python"
+    },
+    "[python]": {
+        "editor.autoIndent": "full",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.detectIndentation": false
+    }
+}

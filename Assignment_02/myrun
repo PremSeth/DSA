@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ $# -eq 0 ]]; then
+    echo "Usage: myrun file_name.py [arguments...]" >&2
+    exit 2
+fi
+
+runner_dir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
+dsa_dir="$(dirname "$runner_dir")"
+target="$(realpath -- "$1")"
+shift
+
+if [[ ! -f "$target" || "$target" != "$dsa_dir/"* || "$target" != *.py ]]; then
+    echo "Choose an existing Python file inside $dsa_dir" >&2
+    exit 2
+fi
+
+printf 'Type-checking saved file: %s\n' "$target"
+"$runner_dir/.venv/bin/python" -m mypy \
+    --config-file "$runner_dir/pyproject.toml" \
+    --strict --no-incremental --cache-dir "$runner_dir/.mypy_cache" "$target"
+exec "$runner_dir/.venv/bin/python" "$target" "$@"
