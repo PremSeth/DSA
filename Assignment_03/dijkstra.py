@@ -3,7 +3,7 @@ import heapq
 from graph import Graph
 from priority_queue import minPQ
 
-class dijkstra:
+class Dijkstra:
     def __init__(self, graph: Graph, pq: minPQ): 
         self.graph = graph
         self.pq = pq
